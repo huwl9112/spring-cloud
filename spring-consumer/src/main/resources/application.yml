@@ -1,0 +1,19 @@
+server.port: 8763
+eureka.client.serviceUrl.defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: consumer
+  profiles:
+    active: common,config
+
+feign.hystrix.enabled: true
+
+provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #BestAvailableRule\RandomRule\WeightedResponseTimeRule
+    ConnectTimeout: 500 #请求连接超时时间
+    ReadTimeout: 1000 #请求处理的超时时间
+    OkToRetryOnAllOperations: true #对所有请求都进行重试
+    MaxAutoRetriesNextServer: 2 #切换实例的重试次数
+    MaxAutoRetries: 1 #对当前实例的重试次数
+

@@ -1,0 +1,8 @@
+#微信公众号设置
+wx:
+  config:
+    appId: wx67bb3d26908b52e5
+    appSecret: aadd9fb67f5616d9b85b8fab4ceba87b
+
+
+

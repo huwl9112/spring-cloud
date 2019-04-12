@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: demo
+  aop:
+    proxy-target-class: true
+  profiles:
+    active: common,config
+  # 定位模板的目录
+  #mvc:
+    #view:
+    # 定位模板的目录
+      #prefix: classpath:/templates/
+      # 给返回的页面添加后缀名
+     # suffix: .html
+  #freemarker配置
+  freemarker:
+    allow-request-override: false
+    cache: true
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    suffix: .html
+    template-loader-path: classpath:/templates/
+    #view-names= # whitelist of view names that can be resolved
+    #prefix
+
+  #解决响应乱码
+  http:
+    encoding:
+      force: true
+      #charset: UTF-8
+      #enabled: true
+  devtools:
+    restart:
+      enabled: true
+  #configuration-properties:
+    #dbType: mysql #设置全局属性用于控制数据库的类型
+
+#防止get请求中文乱码
+#server:
+  #port: 443
+  #tomcat:
+    #max-threads: 800
+    #accept-count: 30000
+    #min-spare-threads: 20
+    #max-connections: 30000
+    #uri-encoding: UTF-8
+  #ssl:
+#    证书路径
+   # key-store: classpath:tomcat.key
+    #key-store-type: JKS
+    #key-alias: tomcat
+#    配置密码，就是在生成证书的时候输入的密码
+    #key-store-password: 12051626
+    #enabled: true
+
+#eureka
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://eureka1:8761/eureka/

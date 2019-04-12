@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: gateway-zuul
+server:
+  port: 8040
+eureka:
+  instance:
+    hostname: gateway-zuul   # 指定该Eureka实例的主机名
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://huwl:huwl@eureka1:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

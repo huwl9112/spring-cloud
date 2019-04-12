@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.cloud.dao.OperationLogDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="spring.cloud.entity.OperationLog">
+        <id column="id" property="id" />
+        <result column="oper_moudel" property="operMoudel" />
+        <result column="type" property="type" />
+        <result column="table" property="table" />
+        <result column="content" property="content" />
+        <result column="time" property="time" />
+        <result column="operId" property="operId" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, oper_moudel, type, table, content, time, operId, status
+    </sql>
+
+    <select id="selectByPage" parameterType="map" resultType="OperationLog">
+        select * from operation_log
+    </select>
+
+</mapper>
