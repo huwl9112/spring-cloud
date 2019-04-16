@@ -22,14 +22,12 @@ import java.util.Map;
 public class DataSourceConfig {
 
     @Bean(name="master")
-    //@Primary // 在同样的DataSource中，首先使用被标注的DataSource
     @ConfigurationProperties(prefix = "spring.datasource.master")
     public DataSource master(){
         return new DruidDataSource();
     }
 
     @Bean(name="slave")
-    //@Primary // 在同样的DataSource中，首先使用被标注的DataSource
     @ConfigurationProperties(prefix = "spring.datasource.slave")
     public DataSource slave(){
         return new DruidDataSource();
@@ -40,7 +38,7 @@ public class DataSourceConfig {
      * @return
      */
     @Bean(name="multipleDataSource")
-    @Primary
+    @Primary// 在同样的DataSource中，首先使用被标注的DataSource
     public DataSource multipleDataSource (@Qualifier("master") DataSource master,
                                           @Qualifier("slave") DataSource slave ) {
         DynamicDataSource dynamicDataSource = new DynamicDataSource();

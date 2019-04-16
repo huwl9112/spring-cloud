@@ -43,7 +43,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("getDataList")
-    @DataSourceAnontation(dataSource=SysConstant.MASTER)
+    @DataSourceAnontation(dataSource=SysConstant.SLAVE)
     @ApiOperation(value="分页获取用户列表")
     public ReturnResult getDataList(@RequestParam(name = "pageNumber", defaultValue = "1") int pageNumer, @RequestParam(name = "pageSize", defaultValue = "1") int pageSize, HttpServletRequest request) {
         Map<String, Object> params = GetRequestParamsUtil.getRequestParams(request);

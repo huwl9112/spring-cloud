@@ -32,20 +32,20 @@ public class DataSourceAspect {
     /*
      * 定义一个注解切入点
      */
-    @Pointcut("@annotation(com.hu.demo.datasource.DataSourceAnontation)")
+    @Pointcut("@annotation(spring.cloud.config.datasource.DataSourceAnontation)")
     public void dataAnnotation() {
     }
 
 
     // 用@Pointcut来注解一个切入方法
-    @Pointcut("execution(* com.hu.demo.controller.*.*(..))")
+    @Pointcut("execution(* spring.cloud.controller.*.*(..))")
     public void dataService() {
     }
 
-    @Around("within(com.hu.demo..*) && @annotation(dataAnontation)")
-    public Object switchDataSource(ProceedingJoinPoint pjp, DataSourceAnontation dataAnontation) {
-        logger.info("切换到数据源..."+dataAnontation.dataSource());
-        DbContextHolder.setDbType(dataAnontation.dataSource());
+    @Around("within(spring.cloud..*)&& @annotation(dataSourceAnontation)")
+    public Object switchDataSource(ProceedingJoinPoint pjp, DataSourceAnontation dataSourceAnontation) {
+        logger.info("切换到数据源..."+dataSourceAnontation.dataSource());
+        DbContextHolder.setDbType(dataSourceAnontation.dataSource());
         try {
             Object rt=  pjp.proceed();
             DbContextHolder.clearDbType();//用完释放，防止内存泄漏

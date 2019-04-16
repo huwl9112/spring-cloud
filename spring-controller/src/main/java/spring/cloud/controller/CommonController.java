@@ -3,10 +3,7 @@ package spring.cloud.controller;
 import com.baomidou.mybatisplus.plugins.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.util.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import spring.cloud.dao.CommonDao;
 import spring.cloud.entity.ReturnResult;
 import spring.cloud.utils.SpringContextUtil;
@@ -27,7 +24,7 @@ import java.util.Map;
 @RequestMapping("common/{module}")
 public class CommonController {
 
-    @RequestMapping("getDataList")
+    @RequestMapping(value="getDataList",method = RequestMethod.POST)
     public ReturnResult getDataList(@RequestParam Map<String, Object> params, @RequestParam(name = "pageNumber", defaultValue = "1") int pageNumber, @RequestParam(name = "pageSize", defaultValue = "10") int pageSize, @PathVariable String module) throws InvocationTargetException, IllegalAccessException {
         ReturnResult result = new ReturnResult();
         Page<?> page = new Page<>(pageNumber, pageSize);

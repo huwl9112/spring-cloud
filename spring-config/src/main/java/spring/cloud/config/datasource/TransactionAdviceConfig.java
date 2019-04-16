@@ -22,7 +22,7 @@ import javax.annotation.Resource;
 @Configuration
 @Aspect
 public class TransactionAdviceConfig {
-    private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.hu.demo .service.*.*(..))";
+    private static final String AOP_POINTCUT_EXPRESSION = "execution (* spring.cloud.iservice ..*.*(..))";
 
     @Resource(name = "transactionManager")
     private DataSourceTransactionManager transactionManager;

@@ -12,6 +12,7 @@ import spring.cloud.entity.OperationLog;
 import spring.cloud.iservice.OperationLogService;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @Date: 2018/7/27 14:59
@@ -25,7 +26,7 @@ public class LogAspect {
     @Autowired
     private OperationLogService logService;
 
-    @AfterReturning(returning="rvt",pointcut = "execution(* spring.cloud.controller.*.*(..)) && @annotation(logAnontation)")
+    @AfterReturning(returning="rvt",pointcut = "execution(* spring.cloud.controller.*.*(..)) && @annotation(logAnontation)")//注解名字取类名首字母小写则无需另外定义
     public void addLogAfter(JoinPoint jp, LogAnontation logAnontation, Object rvt) {
         logger.debug("正在执行的方法名称:" + jp.getSignature().getName());
         Object retValue = null;
