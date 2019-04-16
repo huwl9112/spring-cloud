@@ -1,5 +1,6 @@
 package spring.cloud.config;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -38,12 +39,15 @@ public class WebExceptionAspect {
         HttpServletResponse response = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getResponse();
         response.reset();
         response.setCharacterEncoding("UTF-8");
-        response.setHeader("Content-Type", "text/plain;charset=UTF-8");
+        response.setHeader("Content-Type", "application/json;charset=UTF-8");
         response.setHeader("icop-content-type", "exception");
         PrintWriter writer = null;
         try {
+            JSONObject result=new JSONObject();
+            result.put("isSuccess",false);
+            result.put("msg",msg);
             writer = response.getWriter();
-            writer.print(msg);
+            writer.print(result);
             writer.flush();
             writer.close();
         } catch (IOException e) {
