@@ -7,4 +7,4 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone:  http://eureka1:8761/eureka/
+      defaultZone:  http://huwl:huwl@eureka1:8761/eureka/
