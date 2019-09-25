@@ -1,10 +1,36 @@
 spring:
   application:
     name: provider
-server:
-  port: 9091
 
 eureka:
   client:
     service-url:
-      defaultZone:  http://huwl:huwl@eureka1:8761/eureka/
+      defaultZone:  http://118.31.117.206:8001/eureka
+
+cas:
+  server-url-prefix: http://localhost:8080/cas
+  server-login-url: http://localhost:8080/cas/login
+  validation-type: cas
+
+---
+spring:
+  profiles: p1
+server:
+  port: 9091
+cas:
+   client-host-url: http://localhost:9091
+
+
+---
+spring:
+  profiles: p2
+server:
+  port: 9092
+cas:
+   client-host-url: http://localhost:9092
+
+---
+spring:
+  profiles: p3
+server:
+  port: 9093

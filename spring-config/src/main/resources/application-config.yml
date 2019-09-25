@@ -2,10 +2,10 @@ spring:
 #数据源配置(mysql高版本需这样配置)
   datasource:
     master:
-      url: jdbc:mysql://172.16.1.11:3306/shop?tinyInt1isBit=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT%2B8
+      url: jdbc:mysql://118.31.105.199:3306/data_center?tinyInt1isBit=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT%2B8
       driver-class-name: com.mysql.cj.jdbc.Driver
-      username: root
-      password: 123456
+      username: wlhu_nj
+      password: S4FVn4Lqlgtc
       type: com.alibaba.druid.pool.DruidDataSource
       initialSize: 5
       minIdle: 5
@@ -22,10 +22,10 @@ spring:
       #filters: stat,wall,log4j
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     slave:
-      url: jdbc:mysql://172.16.1.11:3306/medicine_info?tinyInt1isBit=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT%2B8
+      url: jdbc:mysql://118.31.105.199:3306/data_center?tinyInt1isBit=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT%2B8
       driver-class-name: com.mysql.cj.jdbc.Driver
-      username: root
-      password: 123456
+      username: wlhu_nj
+      password: S4FVn4Lqlgtc
       type: com.alibaba.druid.pool.DruidDataSource
       initialSize: 5
       minIdle: 5

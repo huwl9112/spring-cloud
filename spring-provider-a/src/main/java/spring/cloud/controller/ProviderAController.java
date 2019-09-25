@@ -1,6 +1,9 @@
 package spring.cloud.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,11 +19,23 @@ import java.util.Map;
 @RequestMapping("provide")
 @Api(description = "服务一")
 public class ProviderAController {
-    @RequestMapping("getUser")
-    public Map<String,Object> getUser(){
+    @Value("${server.port}")
+    private Integer port;
+
+    @GetMapping("getUser")
+    public JSONObject getUser(Integer consumerPort){
         Map<String,Object> result=new HashMap<>();
-        result.put("name","huwl");
-        result.put("from","provider-a");
-        return result;
+        result.put("providerPort",port);
+        result.put("consumerPort",consumerPort);
+        //return result;
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("data",result);
+        jsonObject.put("code",1);
+        return jsonObject;
+    }
+
+    @GetMapping("/test")
+    public String get(){
+        return "test success";
     }
 }

@@ -5,14 +5,49 @@ server:
   port: 8040
 eureka:
   instance:
-    hostname: gateway-zuul   # 指定该Eureka实例的主机名
+    #hostname: gateway-zuul   # 指定该Eureka实例的主机名
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://huwl:huwl@eureka1:8761/eureka
+      defaultZone: http://118.31.117.206:8001/eureka #http://huwl:huwl@eureka1:8761/eureka
 
+#http://10.20.0.45:8040/actuator/routes可查看暴露的所有端点
 management:
   endpoints:
     web:
       exposure:
         include: '*'
+
+#不手动配置如下路由，zuul将暴露所有服务，且规则为 /serviceid/**   serviceid
+zuul:
+  #prefix: /api 给服务统一加上前缀
+  ignored-services: '*' #忽略其他所有服务，只暴露routes指定的服务,不配置，将暴露默认的和如下，也可以单个忽略
+  routes:
+    provider: /client1/**
+    consumer: /client2/**
+    #以下是静态路由服务转发，即要代理的服务未注册
+    #provider: #zuul内部使用，名称可以随意
+      #path: /organizationstatic/** #代理路径
+      #url: http://localhost:11000 #实际转发路径
+  FormBodyWrapperFilter: #禁用指定的过滤
+    pre:
+      disabled: true
+
+
+#使用okhttp代替默认的httpcilent
+#针对某个微服务的负载均衡策略，去掉服务名则是全局
+#provider:
+ribbon:
+  okhttp:
+    enabled: true
+#ribbon:
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #BestAvailableRule\RandomRule\WeightedResponseTimeRule\RoundRobinRule
+  ConnectTimeout: 1000 #请求连接超时时间
+  ReadTimeout: 3000 #请求转发超时时间
+  OkToRetryOnAllOperations: true #对所有请求都进行重试
+  MaxAutoRetriesNextServer: 2 #最大自动重试下一个服务的次数
+  MaxAutoRetries: 1 #对当前实例的重试次数
+
+hystrix.command.default.execution:
+  timeout.enabled: true
+  isolation.thread.timeoutInMilliseconds: 8000

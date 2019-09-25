@@ -1,9 +1,7 @@
 package spring.cloud.consumer;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @Date: 2019/4/10 14:45
@@ -13,8 +11,8 @@ import java.util.Map;
 @Component
 public class IFeignClientHystrix implements IFeignClient{
     @Override
-    public Map<String, Object> getUser() {
-        Map<String,Object> result=new HashMap<>();
+    public JSONObject getUser(Integer port) {
+        JSONObject result=new JSONObject();
         result.put("name","default");
         result.put("from","hystrix");
         return result;

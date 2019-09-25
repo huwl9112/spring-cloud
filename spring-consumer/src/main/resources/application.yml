@@ -1,19 +1,42 @@
-server.port: 8763
-eureka.client.serviceUrl.defaultZone: http://huwl:huwl@eureka1:8761/eureka/
 spring:
   application:
     name: consumer
   profiles:
     active: common,config
+eureka.client.serviceUrl.defaultZone: http://118.31.117.206:8001/eureka
 
-feign.hystrix.enabled: true
+#服务降级默认是关闭的
+feign:
+  hystrix.enabled: true
+  #使用OKhttp代替默认的client
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
 
+
+#针对某个微服务的负载均衡策略，去掉服务名则是全局
 provider:
   ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #BestAvailableRule\RandomRule\WeightedResponseTimeRule
-    ConnectTimeout: 500 #请求连接超时时间
-    ReadTimeout: 1000 #请求处理的超时时间
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #BestAvailableRule\RandomRule\WeightedResponseTimeRule\RoundRobinRule
+    ConnectTimeout: 1000 #请求连接超时时间
+    ReadTimeout: 3000 #请求转发超时时间
     OkToRetryOnAllOperations: true #对所有请求都进行重试
-    MaxAutoRetriesNextServer: 2 #切换实例的重试次数
+    MaxAutoRetriesNextServer: 2 #最大自动重试下一个服务的次数
     MaxAutoRetries: 1 #对当前实例的重试次数
 
+---
+spring:
+  profiles: c1
+server:
+  port: 8763
+---
+spring:
+  profiles: c2
+server:
+  port: 8764
+---
+spring:
+  profiles: c3
+server:
+  port: 8765

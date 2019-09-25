@@ -20,7 +20,6 @@
         <module>spring-dao</module>
         <module>spring-service</module>
         <module>spring-controller</module>
-        <module>spring-api</module>
         <module>spring-config</module>
         <module>spring-register</module>
         <module>spring-consumer</module>
@@ -95,6 +94,12 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.56</version>
         </dependency>
 
     </dependencies>

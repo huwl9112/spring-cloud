@@ -1,6 +1,10 @@
 spring:
     application:
         name: register-center
+    security:
+      user:
+        name: huwl
+        password: huwl
 
 eureka:
   instance:
@@ -16,7 +20,7 @@ eureka:
     register-with-eureka: true #表示此实例是否注册到 Eureka Server 以供其他实例发现。在某些情况下，如果你不想自己的实例被发现，而只想发现其他实例，配置为 false 即可
     fetch-registry: true #表示客户端是否从 Eureka Server 获取实例注册信息
     serviceUrl:
-      defaultZone: http://eureka1:8761/eureka/, http://eureka2:8762/eureka/ #表示客户端需要注册的 Eureka Server 的地址
+      defaultZone: http://huwl:huwl@eureka1:8761/eureka/, http://huwl:huwl@eureka2:8762/eureka/ #表示客户端需要注册的 Eureka Server 的地址
 
 logging.level.com.netflix:
   eureka: OFF

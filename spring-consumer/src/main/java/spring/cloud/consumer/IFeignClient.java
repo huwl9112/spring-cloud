@@ -1,10 +1,9 @@
 package spring.cloud.consumer;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @Date: 2018/8/7 14:31
@@ -13,6 +12,6 @@ import java.util.Map;
  */
 @FeignClient(name = "provider",fallback = IFeignClientHystrix.class)
 public interface IFeignClient {
-    @RequestMapping(value="provide/getUser",method = RequestMethod.GET)
-    Map<String,Object> getUser();
+    @GetMapping(value="provide/getUser")
+    JSONObject getUser(@RequestParam("consumerPort") Integer port);
 }

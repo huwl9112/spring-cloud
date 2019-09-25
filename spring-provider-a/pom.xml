@@ -11,6 +11,14 @@
 
     <artifactId>spring-provider-a</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/net.unicon.cas/cas-client-autoconfig-support -->
+        <dependency>
+            <groupId>net.unicon.cas</groupId>
+            <artifactId>cas-client-autoconfig-support</artifactId>
+            <version>1.7.0-GA</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 /**
  * @Date: 2019/4/22 9:33
  * @Author: huwl
- * @Description:
+ * @Description:防跨站脚本攻击
  */
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
